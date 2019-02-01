@@ -24,7 +24,7 @@ function getAllUsers() {
     .catch(error => console.log(error));
 }
 
-(async function getAllCommentsUserHasMade(id = 1) {
+async function getAllCommentsUserHasMade(id = 1) {
   const user = await getUserByUserId(1);
   console.log(user);
   const commentsArray = await comments.getAllComments();
@@ -36,12 +36,12 @@ function getAllUsers() {
 
   console.log(filteredComments);
   return filteredComments;
-})();
+}
 
-// module.exports = {
-//   getUserByUserName,
-//   getUserByUserEmail,
-//   getUserByUserId,
-//   getAllUsers,
-//   getAllCommentsUserHasMade,
-// };
+module.exports = {
+  getUserByUserName,
+  getUserByUserEmail,
+  getUserByUserId,
+  getAllUsers,
+  getAllCommentsUserHasMade
+};

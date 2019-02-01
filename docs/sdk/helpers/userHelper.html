@@ -56,7 +56,7 @@
     .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(error));
 }
 
-(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAllCommentsUserHasMade</span>(<span class="hljs-params">id = <span class="hljs-number">1</span></span>) </span>{
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAllCommentsUserHasMade</span>(<span class="hljs-params">id = <span class="hljs-number">1</span></span>) </span>{
   <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> getUserByUserId(<span class="hljs-number">1</span>);
   <span class="hljs-built_in">console</span>.log(user);
   <span class="hljs-keyword">const</span> commentsArray = <span class="hljs-keyword">await</span> comments.getAllComments();</pre></div></div>
@@ -80,26 +80,15 @@
 
   <span class="hljs-built_in">console</span>.log(filteredComments);
   <span class="hljs-keyword">return</span> filteredComments;
-})();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>module.exports = {
+}
+
+<span class="hljs-built_in">module</span>.exports = {
   getUserByUserName,
   getUserByUserEmail,
   getUserByUserId,
   getAllUsers,
-  getAllCommentsUserHasMade,
-};</p>
-
-            </div>
+  getAllCommentsUserHasMade
+};</pre></div></div>
             
         </li>
         
