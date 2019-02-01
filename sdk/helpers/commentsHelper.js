@@ -1,5 +1,15 @@
-const comments = {
-    // implement methods
+const axios = require('axios');
+const config = require('../config');
+
+function getAllComments() {
+  return axios
+    .get(`${config.baseurl}comments`)
+    .then(response => {
+      return response;
+    })
+    .catch(error => console.log(error));
 }
 
-export default comments;
+module.exports = {
+  getAllComments
+};
