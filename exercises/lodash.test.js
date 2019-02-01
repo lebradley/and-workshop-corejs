@@ -25,6 +25,92 @@
 // Implement a function that curries the function given to it
 // (https://lodash.com/docs/4.17.10#curry)
 
+// Takes in an original array and a callback function TICK
+// Creates a new array FUCKING TICKED
+// Takes each thing from original array 
+// Uses the callback function to do something to each thing
+// Adds this new this to new array
+// returns the new array
+
+
+function mapFunction(array, callback) {
+    let returnArray = [];
+        for(let i = 0; i < array.length; i++) {
+            returnArray.push(callback(array[i]));
+        }
+        return returnArray;
+}
+
+// Takes in array, callback, and optional number starting value
+// Doing callback on each item in the array
+// Add starting value onto result of callback
+// Returns a number and does not change the original array
+
+function reduceFunction(array, callback, start=0) {
+    let prev = start;
+    for(let i=0; i < array.length; i++) {
+        let number = callback(prev, array[i]);
+        prev = number;
+        console.log(number);
+    }
+    return prev;
+
+}
+
+// Memoise functiony stuff
+// Oh deep joy it's closures... 
+// somewhere the child knows about what's passed to parent
+// so the cache needs to go in there somewhere
+ 
+// Key functioncall and param, value would be the answer of that
+
+function memoiseFunction(inputFunction) {
+    let cache = {};
+    return function(...args) {
+        if(cache[args]) {
+            return cache[args];
+        }
+        const results = inputFunction(...args);
+        cache[args] = results;
+        return results;
+    }
+}
+
+// Puts some objects together - left join
+// Does not overwrite the left hand side one
+// Reverse of {...this, ...that}
+
+function defaultFunction(obj1, ...args) {
+    return Object.assign(...args, obj1);
+}
+
+// Throttles take params of function, time out and options
+// function can only call once within the timeout period
+// If called twice within the timeout it is ignore
+
+function throttleFunction(func, timeout) {
+    let startTime = 0;
+    return function() {
+        const newTimestamp = new Date().getTime();
+        
+        if(newTimestamp - startTime > timeout) {
+            const res = func();
+            startTime = newTimestamp;
+            return res;
+        }
+        return;
+    }
+}
+
+const _ = { 
+    map:  mapFunction,
+    reduce: reduceFunction,
+    memoize: memoiseFunction,
+    defaults: defaultFunction,
+    throttle: throttleFunction,
+    curry: () => {},
+};
+
 describe('_.map', () => {
     test('Can concatenate a string as part of a map', () => {
         expect(
@@ -88,6 +174,26 @@ describe('_.memoize', () => {
 
         expect(spy).not.toHaveBeenCalledTimes(2);
     });
+
+    test('Returns the correct result, twice, more parameters', () => {
+        const testObject = {
+            addThemAll: (first, second, third) => first + second + third
+        };
+
+        const spy = jest.spyOn(testObject, 'addThemAll');
+        const memoizedFunction = _.memoize(spy);
+
+        expect(memoizedFunction(2, 2, 2)).toEqual(6);
+        expect(spy).toHaveBeenCalledTimes(1);
+
+        expect(memoizedFunction(2, 2, 2)).toEqual(6);
+        expect(spy).toHaveBeenCalledTimes(1);
+
+        expect(memoizedFunction(2, 2, 2)).toEqual(6);
+        expect(spy).toHaveBeenCalledTimes(1);
+
+        expect(spy).not.toHaveBeenCalledTimes(3);
+    })
 });
 
 describe('_.defaults', () => {
@@ -104,6 +210,11 @@ describe('_.defaults', () => {
         const result = _.defaults({ a : 1 }, { a: 2 });
         expect(result).toEqual({ a: 1 });
     });
+
+    test('three objects testing - for Becky', () => {
+        const result = _.defaults({ a: 1 }, { a: 2, b: 3}, { a: 3});
+        expect(result).toEqual({ a: 1, b: 3});
+    })
 });
 
 describe('_.throttle', () => {
@@ -125,7 +236,7 @@ describe('_.throttle', () => {
     });
 });
 
-describe('_.curry', () => {
+fdescribe('_.curry', () => {
     test('Currys a one argument function', () => {
         
         const inner = jest.fn();

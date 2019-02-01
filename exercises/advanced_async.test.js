@@ -20,7 +20,9 @@
 const getPosts = {
     
     getAllPostsCallback: () => {
-        
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then(response => response.json())
+            .then(json => console.log(json))
     }, 
 
     getAllPostsPromise: () => {
@@ -32,5 +34,9 @@ const getPosts = {
 describe('Your SDK', () => {
     test('works', () => {
         expect(true).toBe(true);
+    })
+
+    test('call the posts', () => {
+        getPosts.getAllPostsCallback();
     })
 });
