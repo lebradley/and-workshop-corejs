@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>userHelper.test.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>userHelper.test.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>Import axios
+mock axios - get, put post etc.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>import user helper
+user Helper uses the axios mock, rather than</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> mockUsers = [
+  {
+    <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'Leanne Graham'</span>,
+    <span class="hljs-attr">username</span>: <span class="hljs-string">'Bret'</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">'Sincere@april.biz'</span>,
+    <span class="hljs-attr">address</span>: {
+      <span class="hljs-attr">street</span>: <span class="hljs-string">'Kulas Light'</span>,
+      <span class="hljs-attr">suite</span>: <span class="hljs-string">'Apt. 556'</span>,
+      <span class="hljs-attr">city</span>: <span class="hljs-string">'Gwenborough'</span>,
+      <span class="hljs-attr">zipcode</span>: <span class="hljs-string">'92998-3874'</span>,
+      <span class="hljs-attr">geo</span>: {
+        <span class="hljs-attr">lat</span>: <span class="hljs-string">'-37.3159'</span>,
+        <span class="hljs-attr">lng</span>: <span class="hljs-string">'81.1496'</span>
+      }
+    },
+    <span class="hljs-attr">phone</span>: <span class="hljs-string">'1-770-736-8031 x56442'</span>,
+    <span class="hljs-attr">website</span>: <span class="hljs-string">'hildegard.org'</span>,
+    <span class="hljs-attr">company</span>: {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'Romaguera-Crona'</span>,
+      <span class="hljs-attr">catchPhrase</span>: <span class="hljs-string">'Multi-layered client-server neural-net'</span>,
+      <span class="hljs-attr">bs</span>: <span class="hljs-string">'harness real-time e-markets'</span>
+    }
+  },
+  {
+    <span class="hljs-attr">id</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'Ervin Howell'</span>,
+    <span class="hljs-attr">username</span>: <span class="hljs-string">'Antonette'</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">'Shanna@melissa.tv'</span>,
+    <span class="hljs-attr">address</span>: {
+      <span class="hljs-attr">street</span>: <span class="hljs-string">'Victor Plains'</span>,
+      <span class="hljs-attr">suite</span>: <span class="hljs-string">'Suite 879'</span>,
+      <span class="hljs-attr">city</span>: <span class="hljs-string">'Wisokyburgh'</span>,
+      <span class="hljs-attr">zipcode</span>: <span class="hljs-string">'90566-7771'</span>,
+      <span class="hljs-attr">geo</span>: {
+        <span class="hljs-attr">lat</span>: <span class="hljs-string">'-43.9509'</span>,
+        <span class="hljs-attr">lng</span>: <span class="hljs-string">'-34.4618'</span>
+      }
+    },
+    <span class="hljs-attr">phone</span>: <span class="hljs-string">'010-692-6593 x09125'</span>,
+    <span class="hljs-attr">website</span>: <span class="hljs-string">'anastasia.net'</span>,
+    <span class="hljs-attr">company</span>: {
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'Deckow-Crist'</span>,
+      <span class="hljs-attr">catchPhrase</span>: <span class="hljs-string">'Proactive didactic contingency'</span>,
+      <span class="hljs-attr">bs</span>: <span class="hljs-string">'synergize scalable supply-chains'</span>
+    }
+  }
+];
+
+jest.mock(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> userHelper = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../helpers/userHelper'</span>);
+
+describe(<span class="hljs-string">'User Helper'</span>, () =&gt; {
+  axios.get.mockResolvedValue(mockUsers);
+
+  test(<span class="hljs-string">'get all users'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> userHelper.getAllUsers();
+    expect(response).toBe(mockUsers);
+    expect(response.length).toBe(mockUsers.length);
+  });
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
