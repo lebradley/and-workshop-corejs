@@ -102,12 +102,20 @@ jest.mock(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> userHelper = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../helpers/userHelper'</span>);
 
 describe(<span class="hljs-string">'User Helper'</span>, () =&gt; {
-  axios.get.mockResolvedValue(mockUsers);
-
   test(<span class="hljs-string">'get all users'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+    axios.get.mockResolvedValue(mockUsers);
     <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> userHelper.getAllUsers();
     expect(response).toBe(mockUsers);
     expect(response.length).toBe(mockUsers.length);
+  });
+
+  test(<span class="hljs-string">'get a user by id'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+    axios.get.mockResolvedValue([mockUsers[<span class="hljs-number">0</span>]]);
+    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> userHelper.getUserByUserId(<span class="hljs-number">1</span>);
+    expect(response).toBe(mockUsers[<span class="hljs-number">0</span>]);
+    expect(response.name).toBe(<span class="hljs-string">'Leanne Graham'</span>);
+    expect(response.email).toBe(<span class="hljs-string">'Sincere@april.biz'</span>);
+    expect(response.id).toBe(<span class="hljs-number">1</span>);
   });
 });</pre></div></div>
             

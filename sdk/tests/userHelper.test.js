@@ -59,11 +59,19 @@ jest.mock('axios');
 const userHelper = require('../helpers/userHelper');
 
 describe('User Helper', () => {
-  axios.get.mockResolvedValue(mockUsers);
-
   test('get all users', async () => {
+    axios.get.mockResolvedValue(mockUsers);
     const response = await userHelper.getAllUsers();
     expect(response).toBe(mockUsers);
     expect(response.length).toBe(mockUsers.length);
+  });
+
+  test('get a user by id', async () => {
+    axios.get.mockResolvedValue([mockUsers[0]]);
+    const response = await userHelper.getUserByUserId(1);
+    expect(response).toBe(mockUsers[0]);
+    expect(response.name).toBe('Leanne Graham');
+    expect(response.email).toBe('Sincere@april.biz');
+    expect(response.id).toBe(1);
   });
 });
