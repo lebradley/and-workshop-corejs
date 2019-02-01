@@ -1,16 +1,22 @@
-const users = {
-    name: 'lunch'
+function getUserByUserName(username) {
+    return new Error('not implemented')
 }
 
-function getUsers() {
-    return ['Emmanuel', 'Lindsay'];
+function getUserByUserEmail(email) {
+    
+}
+
+function getUserByUserId(id) {
+    
 } 
 
-function getAUser() {
-    return 'Bob';
+function getAllUsers() {
+    
 }
 
 module.exports = {
-    getUsers,
-    getAUser,
+    getUserByUserName,
+    getUserByUserEmail,
+    getUserByUserId,
+    getAllUsers,
 }
